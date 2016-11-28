@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">PACKTPUB Free Book</string>
+    <string name="notice"></string>
+    <string name="enter_email">E-Mail</string>
+    <string name="enter_pass">Password</string>
+    <string name="save">Save</string>
+    <string name="clear">Clear</string>
+    <string name="check_input">Check your input</string>
+    <string name="new_free_book">New free book</string>
+    <string name="book_claimed">Book claimed</string>
+    <string name="error_claim_book">Failed to claim free book</string>
+    <string name="notify_new_book">Notify me of new free book</string>
+    <string name="auto_claim_new_book">Claim the new free book automatically</string>
+    <string name="title_login_setting">PACKTPUB Login Setting</string>
+    <string name="use_vibrate">Vibrate on notification</string>
+    <string name="use_sound">Play sound on notification</string>
+    <string name="packt_homepage">PACKT Homepage</string>
+    <string name="packt_freebook">PACKT Free book page</string>
+</resources>
