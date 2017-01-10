@@ -16,4 +16,9 @@
     <string name="use_sound">Play sound on notification</string>
     <string name="packt_homepage">PACKT Homepage</string>
     <string name="packt_freebook">PACKT Free book page</string>
+    <string name="log_deleted">Log file deleted</string>
+    <string name="clear_log">Clear log</string>
+    <string name="view_log">View log</string>
+    <string name="use_log">Leave log messages</string>
+    <string name="log">Log</string>
 </resources>

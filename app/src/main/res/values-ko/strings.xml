@@ -16,4 +16,9 @@
     <string name="use_sound">알림 시 알림음 사용</string>
     <string name="packt_homepage">PACKT 홈페이지</string>
     <string name="packt_freebook">PACKT 무료 책 페이지</string>
+    <string name="log_deleted">로그 파일을 삭제했습니다</string>
+    <string name="clear_log">로그 삭제</string>
+    <string name="view_log">로그 보기</string>
+    <string name="use_log">로그 남김</string>
+    <string name="log">로그</string>
 </resources>

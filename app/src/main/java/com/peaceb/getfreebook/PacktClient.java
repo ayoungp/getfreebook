@@ -27,6 +27,14 @@ class PacktClient {
 
     private Map<String, String> _cookies = null;
 
+    private static final String LOG_FILE_NAME = "packt.log";
+    private String _logFilePath = null;
+
+    public PacktClient(String logDir) {
+        _logFilePath = logDir + "/" + LOG_FILE_NAME;
+    }
+
+
     private boolean isLogin() {
         if (_cookies == null || !_cookies.containsKey(COOKIE_KEY_SESSION)) {
             return false;
@@ -103,12 +111,18 @@ class PacktClient {
                 title = els.get(0).text().trim();
                 els.clear();
             }
+            else {
+                return null;
+            }
 
             // extract book claim url
             els = doc.select("a[href^=/freelearning-claim/]");
             if (els.size() > 0) {
                 claimUrl = MAIN_URL + els.get(0).attr("href");
                 els.clear();
+            }
+            else {
+                return null;
             }
         }
         catch (IOException e) {

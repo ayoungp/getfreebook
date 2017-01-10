@@ -64,6 +64,20 @@
             android:layout_height="wrap_content"
             android:text="@string/use_sound"
             />
+        <CheckBox
+            android:id="@+id/checkUseLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/use_log"
+            />
+
+        <Button
+            android:id="@+id/buttonTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test"
+            android:visibility="gone"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -100,5 +114,13 @@
             android:textColor="#0000ff"
             />
     </LinearLayout>
+    <TextView
+        android:id="@+id/textVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        />
 </RelativeLayout>
 </ScrollView>

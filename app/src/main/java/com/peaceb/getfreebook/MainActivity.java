@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,6 +23,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private CheckBox _checkAutoClaim = null;
     private CheckBox _checkUseVibrate = null;
     private CheckBox _checkUseSound = null;
+    private CheckBox _checkUseLog = null;
     private TextView _textLoginInfo = null;
 
     @Override
@@ -32,17 +35,24 @@ public class MainActivity extends Activity implements View.OnClickListener {
         _checkAutoClaim = (CheckBox)findViewById(R.id.checkAutoClaim);
         _checkUseVibrate = (CheckBox)findViewById(R.id.checkUseVibrate);
         _checkUseSound = (CheckBox)findViewById(R.id.checkUseSound);
+        _checkUseLog = (CheckBox)findViewById(R.id.checkUseLog);
         _textLoginInfo = (TextView)findViewById(R.id.textLoginInfo);
 
         _checkNotify.setOnClickListener(this);
         _checkAutoClaim.setOnClickListener(this);
         _checkUseVibrate.setOnClickListener(this);
         _checkUseSound.setOnClickListener(this);
+        _checkUseLog.setOnClickListener(this);
 
         loadSettings();
 
         findViewById(R.id.textLinkHome).setOnClickListener(this);
         findViewById(R.id.textLinkFreeBook).setOnClickListener(this);
+
+        // test
+        findViewById(R.id.buttonTest).setOnClickListener(this);
+
+        displayVersion();
     }
 
     @Override
@@ -79,12 +89,37 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Setting.set(this, Setting.KEY_USE_SOUND, _checkUseSound.isChecked());
                 break;
 
+            case R.id.checkUseLog:
+                Setting.set(this, Setting.KEY_USE_LOG, _checkUseLog.isChecked());
+                break;
+
             case R.id.textLinkHome:
             case R.id.textLinkFreeBook:
                 String url = ((TextView)findViewById(v.getId())).getText().toString();
                 startBrowser(url);
                 break;
+
+            case R.id.buttonTest:
+                doTest();
+                break;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_log:
+                startShowLog();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadSettings() {
@@ -103,6 +138,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         _checkNotify.setChecked(notifyNewbook);
         _checkAutoClaim.setChecked(autoClaim);
         _checkUseVibrate.setChecked(Setting.getBoolean(this, Setting.KEY_USE_VIBRATE));
+        _checkUseLog.setChecked(Setting.getBoolean(this, Setting.KEY_USE_LOG));
         _checkUseSound.setChecked(Setting.getBoolean(this, Setting.KEY_USE_SOUND));
 
         if (autoClaim) {
@@ -194,6 +230,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void startBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intent);
+    }
+
+    private void startShowLog() {
+        Intent intent = new Intent(this, LogActivity.class);
+        startActivity(intent);
+    }
+
+    private void displayVersion() {
+        TextView tv = (TextView)findViewById(R.id.textVersion);
+        tv.setText("v" + BuildConfig.VERSION_NAME);
+    }
+
+    private void doTest() {
+        Setting.remove(this,  Setting.KEY_LAST_BOOK_TITLE);
+        Setting.stopCheckNewBook(this);
+        Setting.startCheckNewBook(this);
     }
 }
 

@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
@@ -31,6 +32,7 @@ class Setting {
     public static final String KEY_CHECK_FIRST = "pref_key_check_first";
     public static final String KEY_USE_VIBRATE = "pref_key_use_vibrate";
     public static final String KEY_USE_SOUND = "pref_key_use_sound";
+    public static final String KEY_USE_LOG = "pref_key_use_log";
 
     public static String get(Context context, String key) {
             SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -99,6 +101,10 @@ class Setting {
     }
 
     public static String decrypt(Context context, String encryptedStr) {
+        if (TextUtils.isEmpty(encryptedStr)) {
+            return "";
+        }
+
         try {
             MessageDigest md = MessageDigest.getInstance("SHA");
             byte[] key = md.digest(Util.getMacAddress(context).getBytes());

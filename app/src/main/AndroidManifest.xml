@@ -22,12 +22,19 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".LogActivity"
+            android:label="@string/log"
+            android:configChanges="orientation|screenSize"
+            />
+
         <receiver android:name=".BootReceiver"
             android:enabled="true"
             android:exported="false"
             android:label="GetFreeBookBootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
             </intent-filter>
         </receiver>
 
